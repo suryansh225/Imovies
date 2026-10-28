@@ -1,0 +1,39 @@
+{
+  "name": "imovies-server",
+  "version": "1.0.0",
+  "description": "Backend API for iMovies movie ticket booking application",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/seeds/seedMovies.js && node src/seeds/seedTheatres.js",
+    "seed:movies": "node src/seeds/seedMovies.js",
+    "seed:theatres": "node src/seeds/seedTheatres.js",
+    "test": "node tests/auth.test.js && node tests/movies.test.js && node tests/theatres_showtimes.test.js && node tests/bookings.test.js && node tests/payment.test.js"
+  },
+  "keywords": [
+    "imovies",
+    "express",
+    "nodejs",
+    "mongoose",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.9.5",
+    "nanoid": "^6.0.2",
+    "razorpay": "^2.9.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

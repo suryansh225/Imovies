@@ -1,0 +1,299 @@
+/* ============================================================
+   Theatres.css — Modern Premium Theatres Directory
+   ============================================================ */
+
+.theatres-page {
+  min-height: 90vh;
+  padding-bottom: 5rem;
+}
+
+.theatres-page__header {
+  background: linear-gradient(180deg, rgba(22, 22, 30, 0.9) 0%, rgba(9, 9, 13, 0.98) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3rem 0 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.theatres-page__header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.theatres-page__title-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.theatres-page__icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: rgba(229, 9, 20, 0.15);
+  border: 1px solid rgba(229, 9, 20, 0.35);
+  color: var(--accent, #e50914);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.theatres-page__title-group h1 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+}
+
+.theatres-page__title-group p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.35rem;
+}
+
+/* Search */
+.theatres-page__search-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+}
+
+.theatres-page__search-icon {
+  position: absolute;
+  left: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+.theatres-page__search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  padding: 0.65rem 1.2rem 0.65rem 2.6rem;
+  color: #fff;
+  font-size: 0.88rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.theatres-page__search-input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(229, 9, 20, 0.5);
+}
+
+/* City Filter Tabs */
+.theatres-page__city-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+}
+
+.theatres-page__city-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.theatres-page__city-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.theatres-page__city-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.theatres-page__city-btn--active {
+  background: var(--accent, #e50914);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+}
+
+/* ── Theatres Grid ── */
+.theatres-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 4rem;
+}
+
+.theatre-card {
+  position: relative;
+  background: rgba(22, 22, 28, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theatre-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(229, 9, 20, 0.35);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(229, 9, 20, 0.15);
+}
+
+.theatre-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.theatre-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--accent, #e50914);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theatre-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 3px 9px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.theatre-card__name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+}
+
+.theatre-card__location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.theatre-card__loc-icon {
+  color: var(--accent, #e50914);
+  flex-shrink: 0;
+}
+
+.theatre-card__screens-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.theatre-card__amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+.theatre-card__amenity {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.theatre-card__footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.theatre-card__book-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.theatre-card__book-btn:hover {
+  background: var(--accent, #e50914);
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+}
+
+/* ── Banner ── */
+.theatres-page__banner {
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(229, 9, 20, 0.12) 0%, rgba(18, 18, 24, 0.8) 100%);
+  border: 1px solid rgba(229, 9, 20, 0.25);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.theatres-page__banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(229, 9, 20, 0.2);
+  color: #ff4754;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 3px 10px;
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+}
+
+.theatres-page__banner h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.theatres-page__banner p {
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 540px;
+  margin: 0 auto;
+}

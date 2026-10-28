@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iMovies — Premium Cinema Showcase (Redesigned Preview)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090d;
+      --card-bg: rgba(22, 22, 28, 0.75);
+      --accent: #e50914;
+      --accent-glow: rgba(229, 9, 20, 0.45);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.6);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Header */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 14, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .logo-badge {
+      background: linear-gradient(135deg, #e50914, #990008);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .watchlist-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .watchlist-count {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+    .btn-login {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(to right, rgba(9, 9, 13, 0.95) 40%, rgba(9, 9, 13, 0.3)),
+                  url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600&fit=crop') center/cover;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-content {
+      max-width: 680px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(229, 9, 20, 0.2);
+      border: 1px solid rgba(229, 9, 20, 0.5);
+      color: #ff4d58;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .hero-rating {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: #ffc107;
+      font-weight: 700;
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-book {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.85rem 1.8rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--accent-glow);
+      transition: transform 0.2s;
+    }
+    .btn-book:hover { transform: translateY(-2px); }
+    .btn-trailer {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.85rem 1.6rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Container & Sections */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Movie Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.75rem;
+    }
+    .movie-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .movie-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(229, 9, 20, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(229, 9, 20, 0.2);
+    }
+    .card-poster-wrap {
+      position: relative;
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+    }
+    .card-poster {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .movie-card:hover .card-poster { transform: scale(1.08); }
+    .card-heart {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(18, 18, 22, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+    .card-heart.active { background: var(--accent); border-color: transparent; }
+    .card-info {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-footer {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-price {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+    .card-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(14px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-box {
+      width: 100%;
+      max-width: 800px;
+      background: #111118;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.9);
+    }
+    .modal-header {
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-close {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .video-wrap {
+      position: relative;
+      padding-top: 56.25%;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="logo">
+      <div class="logo-badge">🎬</div>
+      i<span>Movies</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">Movies</a></li>
+      <li><a href="#">Theatres</a></li>
+      <li><a href="#">VIP CinePass</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="watchlist-pill" id="watchlist-nav">
+        ❤️ Watchlist <span class="watchlist-count" id="wl-count">2</span>
+      </div>
+      <button class="btn-login" onclick="alert('Demo Login: Signed in as Alex Rivera!')">Sign In</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">🔥 TRENDING #1 · IMAX 4K LASER</div>
+      <h1 class="hero-title">Echoes of Eternity</h1>
+      <div class="hero-meta">
+        <span class="hero-rating">★ 8.7 (245K)</span>
+        <span>·</span>
+        <span>2h 28m</span>
+        <span>·</span>
+        <span>Sci-Fi / Action</span>
+        <span>·</span>
+        <span>English</span>
+      </div>
+      <p class="hero-desc">
+        In a fractured future, a rogue AI architect uncovers a conspiracy that spans centuries. As timelines collapse, he must choose between saving humanity or erasing his own existence.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-book" onclick="openTrailer()">Book Tickets · ₹280</button>
+        <button class="btn-trailer" onclick="openTrailer()">▶ Watch Trailer</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Movies Grid -->
+  <main class="container">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Now Showing in Theatres</h2>
+        <p class="section-sub">Experience cinematic blockbusters in IMAX, Dolby Atmos & 4DX</p>
+      </div>
+    </div>
+
+    <div class="grid" id="movies-container">
+      <!-- Injected via JavaScript -->
+    </div>
+  </main>
+
+  <!-- Trailer Modal -->
+  <div class="modal-backdrop" id="trailer-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-title">Official Trailer</h3>
+        <button class="modal-close" onclick="closeTrailer()">✕</button>
+      </div>
+      <div class="video-wrap">
+        <iframe id="trailer-frame" src="" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sampleMovies = [
+      { id: 1, title: "Echoes of Eternity", genre: "Action, Sci-Fi", rating: 8.7, price: 280, poster: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=600&fit=crop", trailer: "https://www.youtube.com/embed/d9MyW72ELq0" },
+      { id: 2, title: "Crimson Horizon", genre: "Thriller, Drama", rating: 8.2, price: 260, poster: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=600&fit=crop", trailer: "https://www.youtube.com/embed/bK6ldnjE3Y0" },
+      { id: 3, title: "Neon Requiem", genre: "Crime, Action", rating: 7.9, price: 250, poster: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400&h=600&fit=crop", trailer: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+      { id: 4, title: "Stars Between Us", genre: "Romance, Sci-Fi", rating: 8.5, price: 240, poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&h=600&fit=crop", trailer: "https://www.youtube.com/embed/d9MyW72ELq0" }
+    ];
+
+    let watchlist = new Set([1, 2]);
+
+    function renderMovies() {
+      const container = document.getElementById("movies-container");
+      container.innerHTML = sampleMovies.map(m => `
+        <div class="movie-card">
+          <div class="card-poster-wrap">
+            <img src="${m.poster}" alt="${m.title}" class="card-poster">
+            <button class="card-heart ${watchlist.has(m.id) ? 'active' : ''}" onclick="toggleWl(${m.id})">
+              ${watchlist.has(m.id) ? '❤️' : '🤍'}
+            </button>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">${m.title}</h3>
+            <div class="card-meta">
+              <span>★ ${m.rating}</span> · <span>${m.genre}</span>
+            </div>
+            <div class="card-footer">
+              <span class="card-price">₹${m.price}</span>
+              <button class="card-btn" onclick="openTrailer('${m.title}', '${m.trailer}')">Book Now</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+      document.getElementById("wl-count").innerText = watchlist.size;
+    }
+
+    function toggleWl(id) {
+      if (watchlist.has(id)) watchlist.delete(id);
+      else watchlist.add(id);
+      renderMovies();
+    }
+
+    function openTrailer(title = "Echoes of Eternity", url = "https://www.youtube.com/embed/d9MyW72ELq0") {
+      document.getElementById("modal-title").innerText = `${title} — Official Trailer`;
+      document.getElementById("trailer-frame").src = `${url}?autoplay=1`;
+      document.getElementById("trailer-modal").style.display = "flex";
+    }
+
+    function closeTrailer() {
+      document.getElementById("trailer-frame").src = "";
+      document.getElementById("trailer-modal").style.display = "none";
+    }
+
+    renderMovies();
+  </script>
+</body>
+</html>
